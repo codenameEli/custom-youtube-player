@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "custom-youtube-player.min.css",
+	"sources": [
+		"custom-youtube-player.scss"
+	],
+	"mappings": "AAAA,yBAAyB,AAAC,CACzB,eAAe,CAAE,KAAM,CACvB,iBAAiB,CAAE,SAAU,CAC7B,mBAAmB,CAAE,CAAE,CACvB",
+	"names": []
+}
