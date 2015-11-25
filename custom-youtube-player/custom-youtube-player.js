@@ -32,12 +32,12 @@ if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig']) {v
 
         init: function() {
 
-            console.log(this);
+            var player;
+
             this.setOptions();
             this.appendElements();
             this.createPlayer();
             this.addListeners();
-
         },
 
         setOptions: function() {
@@ -49,15 +49,39 @@ if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig']) {v
             this.options.thumbnailSrc = this.options.thumbnailSrc ? this.options.thumbnailSrc : this.getThumbnailSrc();
         },
 
+        addListeners: function() {
+
+            var self = this;
+
+            $('.custom-youtube-container').on( 'click', function() {
+
+                self.playVideo();
+            });
+        },
+
         createPlayer: function() {
 
-            this.player = new YT.Player( 'customYouTubePlayer', {
+            new YT.Player( 'customYouTubePlayer', {
                 width: this.options.width,
                 height: this.options.height,
                 videoId: this.options.videoId,
                 playerVars: this.options.playerVars,
-                events: this.options.playerEvents
+                // events: this.options.playerEvents
+                events: {
+                    'onReady': this.onPlayerReady
+                }
             });
+        },
+
+        onPlayerReady: function(event) {
+
+            player = event.target;
+        },
+
+        playVideo: function() {
+
+            player.playVideo();
+            $('.custom-youtube-container').addClass('video-playing');
         },
 
         getVideoId: function() {
@@ -81,20 +105,12 @@ if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig']) {v
 
             var openContainer = '<div class="custom-youtube-container" style="background-image: url(' + this.options.thumbnailSrc + '); height: ' + this.options.height + 'px; width: ' + this.options.width + 'px;">';
             var playButton = '<span class="custom-youtube-playbutton fa fa-play"></span>';
-            var player = '<div id="customYouTubePlayer" style="display: none;"></div>';
+            var player = '<div id="customYouTubePlayer" class="custom-youtube-player"></div>';
             var closeContainer = '</div>';
 
             $(this.options.appendTo).append( openContainer + playButton + player + closeContainer );
 
             this.createPlayer();
-        },
-
-        addListeners: function() {
-
-            $(this.element).on( 'click', function() {
-
-                console.log("this", this);
-            });
         },
     };
 

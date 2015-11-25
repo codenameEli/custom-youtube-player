@@ -2,4 +2,35 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: 0;
+	position: relative;
+	&:hover {
+
+		.custom-youtube-playbutton {
+			display: block;
+		}
+	}
+	&.video-playing {
+
+		.custom-youtube-player {
+			display: block;
+		}
+
+		.custom-youtube-playbutton {
+			display: none;
+		}
+	}
+
+	.custom-youtube-playbutton {
+		font-size: 40px;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		margin-top: -20px;
+		margin-left: -15px;
+		color: #F00;
+	}
+
+	.custom-youtube-player {
+		display: none;
+	}
 }
