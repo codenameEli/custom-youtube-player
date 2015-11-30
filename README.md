@@ -18,9 +18,13 @@ locked | bool | true | Locks scroll of the body when the modal is open.
 Initialize with:
 
 ```javascript
-jQuery('iframe[src^="https://www.youtube.com"]').customYouTubePlayer();
+function onYouTubeIframeAPIReady() {
+
+    jQuery('iframe[src^="https://www.youtube.com"]').customYouTubePlayer();
+}
  ```
  This is a catch-all for iframe elements with a YouTube video as the elements src attribute.
+ NOTE: DO NOT CHANGE THE FUNCTION NAME and call outside of document.ready() call, preferably at the bottom of your JS file. This is called from when the YouTube iframe api loads.
 
 #### Dependencies
 
