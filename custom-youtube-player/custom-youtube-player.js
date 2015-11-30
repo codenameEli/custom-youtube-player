@@ -105,6 +105,13 @@ if (!window['YT']) {var YT = {loading: 0,loaded: 0};}if (!window['YTConfig']) {v
                     'onStateChange': this.onStateChange.bind(this)
                 }
             });
+
+            this.removeOriginalPlayer();
+        },
+
+        removeOriginalPlayer: function() {
+
+            $(this.element).remove();
         },
 
         onPlayerReady: function(event) {
